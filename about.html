@@ -1,5 +1,5 @@
 <!-- =========================================================
-     about.html – Imagen + texto centrados con fondo inmóvil
+     about.html – Foto izquierda + texto derecha, centrado
 ========================================================= -->
 <!DOCTYPE html>
 <html lang="es">
@@ -21,22 +21,19 @@
   html,body{height:100%;}
   body{
     position:relative;
-    font-family:"Sweet Sans Pro",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif; /* cuerpo de texto */
+    font-family:"Sweet Sans Pro",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
     color:#fff;
-    display:flex;justify-content:center;align-items:center;
-    padding:4rem 1.25rem; /* respiro alrededor del contenido en móvil */
+    display:flex;justify-content:center;align-items:center; /* centra el bloque en la página */
+    padding:6rem 1.25rem 3rem;
     text-rendering:optimizeLegibility;
     -webkit-font-smoothing:antialiased;
     -moz-osx-font-smoothing:grayscale;
   }
   body::before{
     content:"";
-    position:fixed;
-    inset:0;
+    position:fixed;inset:0;
     background:url("/images/fondo_intro_2.png") center/cover no-repeat;
-    z-index:-1;
-    pointer-events:none;
-    transform:translateZ(0);
+    z-index:-1;pointer-events:none;transform:translateZ(0);
   }
 
   /* ---------- 4. MENÚ ---------- */
@@ -51,41 +48,49 @@
   .nav-links{display:flex;gap:1.5rem;}
   nav a{color:#fff;text-decoration:none;transition:font-weight .25s;}
   nav a:hover{font-weight:700;}
-
   .hamburger{display:none;}
   .hamburger span{display:block;width:100%;height:2px;background:#fff;margin:5px 0;transition:.3s;}
 
-  /* ---------- 5. CONTENIDO CENTRAL ---------- */
+  /* ---------- 5. CONTENIDO: FILA CENTRADA ---------- */
   .about-wrap{
     width:100%;
-    max-width:900px;
+    max-width:1100px;
+    margin-inline:auto;
+  }
+  .about-row{
     display:flex;
-    flex-direction:column;
     align-items:center;
-    gap:1.25rem;
-    text-align:center;
+    justify-content:center; /* centra la fila dentro del ancho */
+    gap:clamp(24px, 4vw, 56px);
+  }
+  /* Columna foto */
+  .about-col--photo{
+    flex:0 1 44%;
+    display:flex;justify-content:flex-end;
   }
   .about-photo{
-    width:min(520px,85vw);
-    height:auto;
-    display:block;
+    width:100%;
+    max-width:520px;
+    height:auto;display:block;
     border-radius:6px;
     box-shadow:0 10px 30px rgba(0,0,0,.35);
   }
+  /* Columna texto */
+  .about-col--text{
+    flex:0 1 56%;
+  }
   .about-text{
-    font-size:clamp(0.95rem, 1.2vw, 1.05rem);
-    line-height:1.6;
-    max-width:72ch;
-    margin-inline:auto;
-    text-wrap:pretty;
+    text-align:left;
+    font-size:clamp(0.98rem, 1.15vw, 1.08rem);
+    line-height:1.65;
+    max-width:68ch;
   }
 
   /* ---------- 6. RESPONSIVE ---------- */
-  @media(max-width:768px){
+  @media(max-width:900px){
     nav{left:0;width:100%;justify-content:center;}
     .nav-logo{margin:auto;}
     .nav-separator{display:none;}
-
     .hamburger{
       display:block;position:absolute;left:50%;top:2.5rem;
       width:26px;height:20px;transform:translateX(-50%);
@@ -97,6 +102,11 @@
       display:flex;flex-direction:column;gap:2rem;justify-content:center;align-items:center;
       font-family:"Moglan Demo","Area Normal",sans-serif;
     }
+
+    body{padding-top:7rem;}
+    .about-row{flex-direction:column;align-items:center;}
+    .about-col--photo,.about-col--text{flex-basis:auto;width:min(720px,100%);}
+    .about-col--photo{justify-content:center;}
   }
   </style>
 </head>
@@ -105,11 +115,8 @@
   <!-- ===== MENÚ ===== -->
   <nav>
     <img src="/images/BLANCA_NAME.png" class="nav-logo" alt="Blanca Name logo" />
-
     <span class="hamburger" id="hamburger"><span></span><span></span><span></span></span>
-
     <span class="nav-separator"></span>
-
     <div class="nav-links" id="navLinks">
       <a href="projects.html">Projects</a>
       <a href="skills.html">Skills</a>
@@ -119,22 +126,29 @@
     </div>
   </nav>
 
-  <!-- ===== CONTENIDO CENTRAL ===== -->
+  <!-- ===== CONTENIDO EN FILA ===== -->
   <main class="about-wrap" aria-label="About content">
-    <img src="/images/FRONT_PRINT.png" alt="Portrait" class="about-photo" loading="eager" decoding="async" />
-    <p class="about-text">
-      I’m a multidisciplinary designer based in Madrid, working internationally with clients across Europe and the United States. Versatile by nature, I thrive on creative exchange and the opportunity to connect with people and ideas from different fields. My work blends artistic sensitivity with technical precision, reflecting each client’s identity through thoughtful visual storytelling. With a background that bridges aeronautical engineering, fashion design, and a deep appreciation for the natural world, I approach every project with curiosity, balance, and a passion for transformation.
-    </p>
+    <div class="about-row">
+      <div class="about-col--photo">
+        <img src="/images/FRONT_PRINT.png" alt="Portrait" class="about-photo" loading="eager" decoding="async" />
+      </div>
+      <div class="about-col--text">
+        <p class="about-text">
+          I’m a multidisciplinary designer based in Madrid, working internationally with clients across Europe and the United States.
+          Versatile by nature, I thrive on creative exchange and the opportunity to connect with people and ideas from different fields.
+          My work blends artistic sensitivity with technical precision, reflecting each client’s identity through thoughtful visual storytelling.
+          With a background that bridges aeronautical engineering, fashion design, and a deep appreciation for the natural world, I approach
+          every project with curiosity, balance, and a passion for transformation.
+        </p>
+      </div>
+    </div>
   </main>
 
   <!-- ===== JS menú móvil ===== -->
   <script>
     const burger = document.getElementById("hamburger");
     const links  = document.getElementById("navLinks");
-    if(burger){
-      burger.addEventListener("click",()=>links.classList.toggle("active"));
-    }
+    if(burger){ burger.addEventListener("click",()=>links.classList.toggle("active")); }
   </script>
 </body>
 </html>
-
