@@ -1,13 +1,13 @@
 <!-- =========================================================
-     fernandodecarcer.html – Galería con filtros y visor centrado
-     (fondo inmóvil · vídeos SIEMPRE en loop · menú idéntico)
+     proposals.html – Galería por proyectos + filtros y visor
+     (grid tipo fernandodecarcer · SIN marcos · SIN recortes · videos OK)
 ========================================================= -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FERNANDO DE CÁRCER – Project</title>
+<title>PROPOSALS – Project</title>
 
 <style>
 /* ---------- 1. FUENTES ---------- */
@@ -21,13 +21,13 @@
 /* ---------- 3. FONDO INMÓVIL ---------- */
 html,body{height:100%;}
 body{
-    background:url("/images/fondo_intro_2.png") center/cover no-repeat fixed;
-    color:#fff;font-family:"Area Normal",sans-serif;
+  background:url("/images/fondo_intro_2.png") center/cover no-repeat fixed;
+  color:#fff;font-family:"Area Normal",sans-serif;
 }
 body::before{
-    content:"";position:fixed;inset:0;
-    background:url("/images/fondo_intro_2.png") center/cover no-repeat;
-    z-index:-1;pointer-events:none;transform:translateZ(0);
+  content:"";position:fixed;inset:0;
+  background:url("/images/fondo_intro_2.png") center/cover no-repeat;
+  z-index:-1;pointer-events:none;transform:translateZ(0);
 }
 
 /* ---------- 4. MENÚ ---------- */
@@ -51,7 +51,19 @@ h2{font-family:"Sweet Sans Pro";font-weight:300;font-size:.9rem;letter-spacing:.
 .filter-btn::after{content:"";position:absolute;left:0;bottom:-.2rem;width:0;height:1px;background:#fff;transition:.3s;}
 .filter-btn.active::after{width:100%;}
 
-/* ---------- 7. GALERÍA ---------- */
+/* ---------- TÍTULOS DE SECCIÓN (pequeños) ---------- */
+.section-title{
+  font-family:"Sweet Sans Pro";
+  font-weight:300;
+  font-size:.78rem;
+  letter-spacing:.22rem;
+  text-transform:uppercase;
+  text-align:center;
+  margin:0 auto .25rem;
+  opacity:.95;
+}
+
+/* ---------- 7. GALERÍA (IGUAL que fernandodecarcer) ---------- */
 .gallery-section{display:flex;flex-direction:column;gap:.6rem;}
 .media-row{display:grid;gap:.6rem;}
 .media-row.cols-1{grid-template-columns:1fr;}
@@ -60,9 +72,24 @@ h2{font-family:"Sweet Sans Pro";font-weight:300;font-size:.9rem;letter-spacing:.
 .media-row.cols-4{grid-template-columns:repeat(4,1fr);}
 .gallery-section.tight .media-row{gap:.3rem;}
 
+/* THUMBS: sin marcos, sin “caja”, mismo look que tu otra página */
 .thumb{position:relative;cursor:pointer;border-radius:6px;overflow:visible;}
-.thumb video,.thumb img{width:100%;height:100%;object-fit:cover;border-radius:6px;transition:transform .3s;}
-.thumb:hover video,.thumb:hover img{transform:scale(1.05);}
+
+/* clave:
+   - 100% del grid (todas las celdas iguales)
+   - object-fit:contain => NO RECORTA
+   - background transparente => NO “margen” visible
+*/
+.thumb video,.thumb img{
+  width:100%;
+  height:100%;
+  border-radius:6px;
+  object-fit:contain;
+  object-position:center;
+  background:transparent;
+  transition:transform .3s;
+}
+.thumb:hover video,.thumb:hover img{transform:scale(1.03);}
 
 /* ---------- 8. VISOR ---------- */
 .viewer{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;justify-content:center;align-items:center;z-index:200;padding:1rem;}
@@ -72,108 +99,176 @@ h2{font-family:"Sweet Sans Pro";font-weight:300;font-size:.9rem;letter-spacing:.
 .viewer-close{position:absolute;top:-2rem;right:0;font-size:2rem;background:none;border:none;color:#fff;cursor:pointer;}
 
 /* ---------- 9. RESPONSIVE ---------- */
-@media(max-width:1024px){.media-row.cols-4{grid-template-columns:repeat(3,1fr);}}
+@media(max-width:1024px){.media-row.cols-4{grid-template-columns:repeat(3,1fr);} }
 @media(max-width:768px){
-    nav{left:0;right:0;width:100%;justify-content:center;}
-    .nav-logo{margin:auto;}
-    .nav-separator{display:none;}
-    .hamburger{display:block;position:absolute;left:50%;top:2.5rem;width:26px;height:20px;transform:translateX(-50%);cursor:pointer;z-index:101;}
-    .nav-links{display:none;}
-    .nav-links.active{position:fixed;inset:0;background:rgba(0,0,0,.9);display:flex;flex-direction:column;gap:2rem;justify-content:center;align-items:center;font-family:"Moglan Demo","Area Normal",sans-serif;}
-    .media-row.cols-3,.media-row.cols-4{grid-template-columns:repeat(2,1fr);}
-    .viewer-content video,.viewer-content img{max-width:95vw;max-height:85vh;}
+  nav{left:0;right:0;width:100%;justify-content:center;}
+  .nav-logo{margin:auto;}
+  .nav-separator{display:none;}
+  .hamburger{display:block;position:absolute;left:50%;top:2.5rem;width:26px;height:20px;transform:translateX(-50%);cursor:pointer;z-index:101;}
+  .nav-links{display:none;}
+  .nav-links.active{position:fixed;inset:0;background:rgba(0,0,0,.9);display:flex;flex-direction:column;gap:2rem;justify-content:center;align-items:center;font-family:"Moglan Demo","Area Normal",sans-serif;}
+  .media-row.cols-3,.media-row.cols-4{grid-template-columns:repeat(2,1fr);}
+  .viewer-content video,.viewer-content img{max-width:95vw;max-height:85vh;}
 }
 </style>
 </head>
+
 <body>
 
 <!-- ======= MENÚ ======= -->
 <nav>
-    <a href="index.html#skipIntro"><img src="/images/BLANCA_NAME.png" class="nav-logo" alt="Home"></a>
-    <span class="nav-separator"></span>
-    <div class="nav-links" id="navLinks">
-        <a href="projects.html">Projects</a>
-        <a href="skills.html">Skills</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
-        <a href="inquiry.html">Inquiry</a>
-    </div>
-    <span class="hamburger" id="hamburger"><span></span><span></span><span></span></span>
+  <a href="index.html#top"><img src="/images/BLANCA_NAME.png" class="nav-logo" alt="Home"></a>
+  <span class="nav-separator"></span>
+  <div class="nav-links" id="navLinks">
+    <a href="projects.html">Projects</a>
+    <a href="skills.html">Skills</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="inquiry.html">Inquiry</a>
+  </div>
+  <span class="hamburger" id="hamburger"><span></span><span></span><span></span></span>
 </nav>
 
 <main class="wrapper">
 
-    <!-- ---------- CABECERA ---------- -->
-    <header>
-        <h1>FERNANDO&nbsp;DE&nbsp;CÁRCER</h1>
-        <h2>RETAIL&nbsp;STORE</h2>
+  <!-- ---------- CABECERA ---------- -->
+  <header>
+    <h1>PROPOSALS</h1>
+    <h2>PERSONAL&nbsp;INSPIRATIONS</h2>
 
-        <div class="filter-bar">
-            <button class="filter-btn active" data-filter="all">All</button>
-            <button class="filter-btn" data-filter="motion">Motion&nbsp;Graphics</button>
-            <button class="filter-btn" data-filter="graphic">Graphic&nbsp;Design</button>
-        </div>
-    </header>
+    <div class="filter-bar">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="3d">3D&nbsp;Animation</button>
+      <button class="filter-btn" data-filter="motion">Motion&nbsp;Graphics</button>
+      <button class="filter-btn" data-filter="illustration">Illustration</button>
+      <button class="filter-btn" data-filter="ai">AI&nbsp;Image</button>
+    </div>
+  </header>
 
-    <!-- ===== SECCIÓN 1 — Motion (8 vídeos) ===== -->
-    <section class="gallery-section cat-motion" data-cat="motion">
-        <div class="media-row cols-4">
-            <div class="thumb"><video src="FERNANDODECARCER/video_1.mp4" autoplay muted loop playsinline preload="auto"></video></div>
-            <div class="thumb"><video src="FERNANDODECARCER/video_2.mp4" autoplay muted loop playsinline preload="auto"></video></div>
-            <div class="thumb"><video src="FERNANDODECARCER/video_3.mp4" autoplay muted loop playsinline preload="auto"></video></div>
-            <div class="thumb"><video src="FERNANDODECARCER/video_4.mp4" autoplay muted loop playsinline preload="auto"></video></div>
-        </div>
-        <div class="media-row cols-4">
-            <div class="thumb"><video src="FERNANDODECARCER/video_5.mp4" autoplay muted loop playsinline preload="auto"></video></div>
-            <div class="thumb"><video src="FERNANDODECARCER/video_6.mp4" autoplay muted loop playsinline preload="auto"></video></div>
-            <div class="thumb"><video src="FERNANDODECARCER/video_7.mp4" autoplay muted loop playsinline preload="auto"></video></div>
-            <div class="thumb"><video src="FERNANDODECARCER/video_8.mp4" autoplay muted loop playsinline preload="auto"></video></div>
-        </div>
-    </section>
+  <!-- =========================================================
+       PROYECTOS (ordenados)
+  ========================================================== -->
 
-    <!-- ===== SECCIÓN 2 — Posts ===== -->
-    <section class="gallery-section cat-graphic tight" data-cat="graphic">
-        <div class="media-row cols-4">
-            <div class="thumb"><img src="FERNANDODECARCER/post_1.png" alt=""></div>
-            <div class="thumb"><img src="FERNANDODECARCER/post_2.png" alt=""></div>
-            <div class="thumb"><img src="FERNANDODECARCER/post_3.png" alt=""></div>
-            <div class="thumb"><img src="FERNANDODECARCER/post_4.png" alt=""></div>
-        </div>
-    </section>
+  <!-- ===== MAISON MERIDIAN ===== -->
+  <section class="gallery-section cat-3d" data-cat="3d">
+    <h3 class="section-title">MAISON MERIDIAN</h3>
+    <div class="media-row cols-4">
+      <div class="thumb"><img src="PROPOSALS/maison_1.jpg" alt=""></div>
+      <div class="thumb"><img src="PROPOSALS/maison_2.jpg" alt=""></div>
+      <div class="thumb"><img src="PROPOSALS/maison_3.jpg" alt=""></div>
+      <div class="thumb"><img src="PROPOSALS/maison_4.jpg" alt=""></div>
+    </div>
+  </section>
 
-    <!-- ===== SECCIÓN 3 — Stories ===== -->
-    <section class="gallery-section cat-graphic tight" data-cat="graphic">
-        <div class="media-row cols-4">
-            <div class="thumb"><img src="FERNANDODECARCER/story_1.png" alt=""></div>
-            <div class="thumb"><img src="FERNANDODECARCER/story_2.png" alt=""></div>
-            <div class="thumb"><img src="FERNANDODECARCER/story_3.png" alt=""></div>
-            <div class="thumb"><img src="FERNANDODECARCER/story_4.png" alt=""></div>
-        </div>
-    </section>
+  <!-- ===== FURROW ===== -->
+  <section class="gallery-section cat-3d" data-cat="3d">
+    <h3 class="section-title">FURROW</h3>
+    <div class="media-row cols-3">
+      <div class="thumb"><video src="PROPOSALS/furrow_1.mp4" autoplay muted loop playsinline preload="auto"></video></div>
+      <div class="thumb"><img src="PROPOSALS/furrow_2.jpg" alt=""></div>
+      <div class="thumb"><img src="PROPOSALS/furrow_3.jpg" alt=""></div>
+    </div>
+  </section>
+
+  <!-- ===== STREETXO X FEVER ===== -->
+  <section class="gallery-section cat-motion" data-cat="motion">
+    <h3 class="section-title">STREETXO X FEVER</h3>
+    <div class="media-row cols-1">
+      <div class="thumb"><video src="PROPOSALS/STREETXO_.mp4" autoplay muted loop playsinline preload="auto"></video></div>
+    </div>
+  </section>
+
+  <!-- ===== THE ORDINARY ===== -->
+  <section class="gallery-section cat-3d" data-cat="3d">
+    <h3 class="section-title">THE ORDINARY</h3>
+    <div class="media-row cols-2">
+      <div class="thumb"><img src="PROPOSALS/ordinary_1.jpg" alt=""></div>
+      <div class="thumb"><img src="PROPOSALS/ordinary_2.jpg" alt=""></div>
+    </div>
+  </section>
+
+  <!-- ===== RAYBAN ===== -->
+  <section class="gallery-section cat-3d" data-cat="3d">
+    <h3 class="section-title">RAYBAN</h3>
+    <div class="media-row cols-2">
+      <div class="thumb"><img src="PROPOSALS/rayban_1.jpg" alt=""></div>
+      <div class="thumb"><img src="PROPOSALS/rayban_2.jpg" alt=""></div>
+    </div>
+  </section>
+
+  <!-- ===== JAGUAR ===== -->
+  <section class="gallery-section cat-3d" data-cat="3d">
+    <h3 class="section-title">JAGUAR</h3>
+    <div class="media-row cols-1">
+      <div class="thumb"><video src="PROPOSALS/jaguar.mp4" autoplay muted loop playsinline preload="auto"></video></div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       SECCIONES POR TIPO (mantiene filtros)
+       IMPORTANTE: tus vídeos son video_1.MP4 etc (MAYÚSCULAS)
+  ========================================================== -->
+
+  <!-- ===== MOTION GRAPHICS (video_1..video_5) ===== -->
+  <section class="gallery-section cat-motion" data-cat="motion">
+    <h3 class="section-title">MOTION GRAPHICS</h3>
+    <div class="media-row cols-3">
+      <div class="thumb"><video src="PROPOSALS/video_1.MP4" autoplay muted loop playsinline preload="auto"></video></div>
+      <div class="thumb"><video src="PROPOSALS/video_2.MP4" autoplay muted loop playsinline preload="auto"></video></div>
+      <div class="thumb"><video src="PROPOSALS/video_3.MP4" autoplay muted loop playsinline preload="auto"></video></div>
+    </div>
+    <div class="media-row cols-2">
+      <div class="thumb"><video src="PROPOSALS/video_4.MP4" autoplay muted loop playsinline preload="auto"></video></div>
+      <div class="thumb"><video src="PROPOSALS/video_5.MP4" autoplay muted loop playsinline preload="auto"></video></div>
+    </div>
+  </section>
+
+  <!-- ===== ILLUSTRATION ===== -->
+  <section class="gallery-section cat-illustration tight" data-cat="illustration">
+    <h3 class="section-title">ILLUSTRATION</h3>
+    <div class="media-row cols-3">
+      <div class="thumb"><img src="PROPOSALS/ilu_1.png" alt=""></div>
+      <div class="thumb"><img src="PROPOSALS/ilu_2.JPG" alt=""></div>
+      <div class="thumb"><img src="PROPOSALS/ilu_3.jpg" alt=""></div>
+    </div>
+    <div class="media-row cols-2">
+      <div class="thumb"><img src="PROPOSALS/ilu_4.jpg" alt=""></div>
+      <div class="thumb"><img src="PROPOSALS/ilu_5.png" alt=""></div>
+    </div>
+  </section>
+
+  <!-- ===== AI ===== -->
+  <section class="gallery-section cat-ai" data-cat="ai">
+    <h3 class="section-title">AI IMAGE</h3>
+    <div class="media-row cols-2">
+      <div class="thumb"><img src="PROPOSALS/ai_1.png" alt=""></div>
+      <div class="thumb"><img src="PROPOSALS/ai_2.png" alt=""></div>
+    </div>
+  </section>
 
 </main>
 
 <!-- ========== VISOR ========== -->
 <div class="viewer" id="viewer">
-    <div class="viewer-content" id="viewerContent"></div>
-    <button class="viewer-close" id="viewerClose" aria-label="Close">✕</button>
+  <div class="viewer-content" id="viewerContent"></div>
+  <button class="viewer-close" id="viewerClose" aria-label="Cerrar">✕</button>
 </div>
 
 <script>
 /* ---------- FORZAR AUTOPLAY EN iOS / ANDROID ---------- */
 document.addEventListener('DOMContentLoaded',()=>{
-    document.querySelectorAll('.thumb video').forEach(v=>{
-        v.muted=true;
-        v.setAttribute('playsinline','');
-        v.setAttribute('preload','auto');
-        v.play().catch(()=>{}); // silencio si falla
-    });
+  document.querySelectorAll('.thumb video').forEach(v=>{
+    v.muted=true;
+    v.setAttribute('playsinline','');
+    v.setAttribute('webkit-playsinline','');
+    v.setAttribute('preload','auto');
+    v.play().catch(()=>{});
+  });
 });
 
 /* ---------- menú hamburguesa ---------- */
-document.getElementById('hamburger').addEventListener('click',()=>{
-    document.getElementById('navLinks').classList.toggle('active');
-});
+document.getElementById('hamburger')
+  .addEventListener('click',()=>document.getElementById('navLinks').classList.toggle('active'));
 
 /* ---------- visor ---------- */
 const viewer      = document.getElementById('viewer');
@@ -183,22 +278,20 @@ const viewerClose = document.getElementById('viewerClose');
 document.querySelectorAll('.thumb').forEach(t=>t.addEventListener('click',()=>openViewer(t)));
 
 function openViewer(thumb){
-    viewer.classList.add('open');
-    viewerCont.innerHTML='';
-    const node = thumb.firstElementChild.cloneNode(true);
-    if(node.tagName==='VIDEO'){
-        node.muted=false;
-        node.loop=true;
-        node.controls=true;
-        node.currentTime=0;
-        node.play();
-    }
-    viewerCont.appendChild(node);
+  viewer.classList.add('open');
+  viewerCont.innerHTML='';
+  const node = thumb.firstElementChild.cloneNode(true);
+
+  if(node.tagName==='VIDEO'){
+    node.muted=false;
+    node.loop=true;
+    node.controls=true;
+    node.currentTime=0;
+    node.play().catch(()=>{});
+  }
+  viewerCont.appendChild(node);
 }
-function closeViewer(){
-    viewer.classList.remove('open');
-    viewerCont.innerHTML='';
-}
+function closeViewer(){viewer.classList.remove('open');viewerCont.innerHTML='';}
 viewerClose.addEventListener('click',closeViewer);
 viewer.addEventListener('click',e=>{if(e.target===viewer)closeViewer();});
 
@@ -207,15 +300,16 @@ const buttons  = document.querySelectorAll('.filter-btn');
 const sections = document.querySelectorAll('.gallery-section');
 
 buttons.forEach(btn=>{
-    btn.addEventListener('click',()=>{
-        buttons.forEach(b=>b.classList.remove('active'));
-        btn.classList.add('active');
-        const filter = btn.dataset.filter;
-        sections.forEach(sec=>{
-            sec.style.display = (filter==='all' || sec.dataset.cat===filter) ? '' : 'none';
-        });
+  btn.addEventListener('click',()=>{
+    buttons.forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter=btn.dataset.filter;
+    sections.forEach(sec=>{
+      sec.style.display=(filter==='all'||sec.dataset.cat===filter)?'':'none';
     });
+  });
 });
 </script>
+
 </body>
 </html>
