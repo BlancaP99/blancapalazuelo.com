@@ -73,25 +73,33 @@ h2{font-family:"Sweet Sans Pro";font-weight:300;font-size:.9rem;letter-spacing:.
 .gallery-section.tight .media-row{gap:.3rem;}
 
 /* ---------- THUMBS (sin recortes + tamaño uniforme) ---------- */
+/* ---------- THUMBS (sin margen visible) ---------- */
 .thumb{
   position:relative;
   cursor:pointer;
   border-radius:6px;
   overflow:hidden;
-  background:rgba(0,0,0,.22);           /* letterbox elegante */
-  border:1px solid rgba(255,255,255,.06);
-  aspect-ratio:16/9;                    /* TODOS igual tamaño */
+
+  /* mantenemos tamaño uniforme */
+  aspect-ratio:16/9;
   width:100%;
+
+  /* QUITAR “margen”/tarjeta */
+  background:transparent;
+  border:none;
 }
+
 .thumb video,.thumb img{
   position:absolute;inset:0;
   width:100%;height:100%;
-  object-fit:contain;                   /* IMPORTANTÍSIMO: NO CORTA */
+  object-fit:contain;       /* no recorta */
   object-position:center;
   border-radius:6px;
   transform:none;
 }
-.thumb:hover video,.thumb:hover img{transform:none;} /* sin zoom para no “cortar” visualmente */
+
+.thumb:hover video,.thumb:hover img{transform:none;}
+
 .thumb.small{max-width:640px;margin:auto;}
 
 /* ---------- 8. VISOR ---------- */
