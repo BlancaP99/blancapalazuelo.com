@@ -85,7 +85,7 @@ button:hover{background:#7c6343;}
     input,textarea{font-size:.95rem;}
 }
 
-     /* ---------- 9. FOOTER SUTIL ---------- */
+   /* ---------- 9. FOOTER SUTIL ---------- */
 .site-footer{
     width:100%;
     padding:2.4rem 5% 2rem;
@@ -115,6 +115,13 @@ button:hover{background:#7c6343;}
     justify-content:flex-end;
 }
 
+.footer-btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    text-decoration:none;
+}
+
 .footer-icon{
     width:14px;
     height:14px;
@@ -123,7 +130,7 @@ button:hover{background:#7c6343;}
     transition:opacity .25s ease, transform .25s ease;
 }
 
-.footer-left a:hover .footer-icon{
+.footer-btn:hover .footer-icon{
     opacity:1;
     transform:translateY(-1px);
 }
@@ -213,28 +220,26 @@ button:hover{background:#7c6343;}
     </form>
 </main>
 
-     <!-- ======= FOOTER SUTIL ======= -->
+   <!-- ======= FOOTER SUTIL ======= -->
 <footer class="site-footer">
     <div class="footer-left">
-        <!-- Sustituye estos 3 iconos por los tuyos exactos cuando me los pases -->
-        <a href="#" aria-label="Icon 1">
-            <img src="/images/icono_1.png" alt="" class="footer-icon">
+        <a href="https://wa.me/34671512365" class="footer-btn" target="_blank" aria-label="WhatsApp">
+            <img src="images/whatsapp.png" alt="WhatsApp" class="footer-icon">
         </a>
-        <a href="#" aria-label="Icon 2">
-            <img src="/images/icono_2.png" alt="" class="footer-icon">
+        <a href="mailto:blancapalazueloguijarro@gmail.com" class="footer-btn" aria-label="Mail">
+            <img src="images/MAIL.png" alt="Mail" class="footer-icon">
         </a>
-        <a href="#" aria-label="Icon 3">
-            <img src="/images/icono_3.png" alt="" class="footer-icon">
+        <a href="https://instagram.com/blancapalazuelo" class="footer-btn" target="_blank" aria-label="Instagram">
+            <img src="images/instagram.png" alt="Instagram" class="footer-icon">
         </a>
     </div>
 
     <div class="footer-center">
-        <img src="/images/CERRADURA_ICONO.PNG" alt="Lock icon" class="footer-lock">
+        <img src="images/CERRADURA_ICONO.PNG" alt="Lock icon" class="footer-lock">
     </div>
 
     <div class="footer-right"></div>
 </footer>
-
 <!-- ======= JS ======= -->
 <script>
 /* ---------- menú hamburguesa ---------- */
