@@ -86,6 +86,34 @@ h2{font-family:"Sweet Sans Pro";font-weight:300;font-size:.9rem;letter-spacing:.
     .media-row.cols-3,.media-row.cols-4{grid-template-columns:repeat(2,1fr);}
     .viewer-content video,.viewer-content img{max-width:95vw;max-height:85vh;}
 }
+
+/* ---------- 9. FOOTER ---------- */
+.site-footer{
+    width:100%;
+    padding:4.5rem 0 3.2rem;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.footer-lock{
+    width:72px;
+    height:auto;
+    object-fit:contain;
+    display:block;
+    opacity:.95;
+}
+
+@media(max-width:768px){
+    .site-footer{
+        padding:3.2rem 0 2.4rem;
+    }
+
+    .footer-lock{
+        width:58px;
+    }
+}
+     
 </style>
 </head>
 
@@ -158,6 +186,12 @@ h2{font-family:"Sweet Sans Pro";font-weight:300;font-size:.9rem;letter-spacing:.
     <button class="viewer-close" id="viewerClose" aria-label="Close">✕</button>
 </div>
 
+<!-- ======= FOOTER ======= -->
+<footer class="site-footer">
+    <img src="images/CERRADURA_ICONO.png" alt="Lock icon" class="footer-lock">
+</footer>
+     
+     
 <script>
 /* ---------- FORZAR AUTOPLAY EN iOS / ANDROID ---------- */
 document.addEventListener('DOMContentLoaded',()=>{
