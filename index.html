@@ -142,6 +142,34 @@ nav a:hover{font-weight:700;}
     .project-card{flex:0 0 100%;max-width:100%;scroll-snap-align:center;}
     .project-card:not(.active) img{filter:none;}
 }
+
+/* ---------- 9. FOOTER ---------- */
+.site-footer{
+    width:100%;
+    padding:4.5rem 0 3.2rem;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.footer-lock{
+    width:72px;
+    height:auto;
+    object-fit:contain;
+    display:block;
+    opacity:.95;
+}
+
+@media(max-width:768px){
+    .site-footer{
+        padding:3.2rem 0 2.4rem;
+    }
+
+    .footer-lock{
+        width:58px;
+    }
+}
+       
   </style>
 </head>
 <body id="top">
@@ -204,6 +232,12 @@ nav a:hover{font-weight:700;}
   </a>
 </section>
 
+<!-- ======= FOOTER ======= -->
+<footer class="site-footer">
+    <img src="images/CERRADURA_ICONO.png" alt="Lock icon" class="footer-lock">
+</footer>
+
+     
 <!-- ------------- JS ------------- -->
 <script>
 /* ---------- Intro solo 1ª visita ---------- */
