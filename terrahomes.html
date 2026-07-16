@@ -1,7 +1,6 @@
 <!-- =========================================================
      terrahomes.html
      Proyecto TERRA HOMES
-     Web, logotipo y presentación de branding
 ========================================================= -->
 
 <!DOCTYPE html>
@@ -12,10 +11,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>TERRA HOMES – Project</title>
-
-    <!-- PDF.js: permite mostrar todas las páginas del PDF -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs"
-            type="module"></script>
 
     <style>
         /* =====================================================
@@ -117,8 +112,8 @@
 
         .nav-logo {
             display: block;
-            height: 1.4rem;
             width: auto;
+            height: 1.4rem;
             cursor: pointer;
         }
 
@@ -146,6 +141,9 @@
 
         .hamburger {
             display: none;
+            padding: 0;
+            border: 0;
+            background: transparent;
         }
 
         .hamburger span {
@@ -220,6 +218,7 @@
 
             cursor: pointer;
             opacity: 0.65;
+
             transition:
                 opacity 0.25s ease,
                 color 0.25s ease;
@@ -259,42 +258,10 @@
 
         .filter-item {
             width: 100%;
-            opacity: 1;
-            transform: translateY(0);
-
-            transition:
-                opacity 0.3s ease,
-                transform 0.3s ease;
         }
 
         .filter-item.is-hidden {
             display: none;
-        }
-
-        .section-heading {
-            margin-bottom: 2.2rem;
-            text-align: center;
-        }
-
-        .section-heading h3 {
-            font-family: "Moglan Demo", "Area Normal", sans-serif;
-            font-size: 1.2rem;
-            font-weight: 200;
-            letter-spacing: 0.09rem;
-            text-transform: uppercase;
-        }
-
-        .section-heading p {
-            max-width: 580px;
-            margin: 0.65rem auto 0;
-
-            font-family: "Sweet Sans Pro", sans-serif;
-            font-size: 0.72rem;
-            line-height: 1.6;
-            letter-spacing: 0.08rem;
-            text-transform: uppercase;
-
-            opacity: 0.7;
         }
 
         /* =====================================================
@@ -361,7 +328,7 @@
         }
 
         /* =====================================================
-           8. PRESENTACIÓN HORIZONTAL
+           8. PRESENTACIÓN
         ===================================================== */
 
         .presentation-shell {
@@ -370,7 +337,10 @@
         }
 
         .presentation-gallery {
+            position: relative;
+
             width: 100%;
+            min-height: 620px;
             padding: 0 1rem 1.5rem;
 
             display: flex;
@@ -379,6 +349,7 @@
 
             overflow-x: auto;
             overflow-y: hidden;
+
             scroll-snap-type: x proximity;
             scrollbar-width: thin;
             scrollbar-color:
@@ -399,6 +370,23 @@
             background: rgba(255, 255, 255, 0.55);
             border-radius: 100px;
         }
+
+        /* Preview inicial del PDF */
+
+        .pdf-preview {
+            display: block;
+            flex: 0 0 100%;
+
+            width: 100%;
+            height: 78vh;
+            min-height: 620px;
+
+            border: 0;
+            border-radius: 10px;
+            background: #fff;
+        }
+
+        /* Diapositivas creadas mediante PDF.js */
 
         .pdf-slide {
             position: relative;
@@ -437,23 +425,6 @@
             font-size: 0.58rem;
             line-height: 1;
             text-align: center;
-        }
-
-        .presentation-message {
-            width: 100%;
-            min-height: 250px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            font-family: "Sweet Sans Pro", sans-serif;
-            font-size: 0.72rem;
-            letter-spacing: 0.1rem;
-            text-align: center;
-            text-transform: uppercase;
-
-            opacity: 0.65;
         }
 
         .presentation-actions {
@@ -497,7 +468,7 @@
         }
 
         /* =====================================================
-           9. PREVIEW DE LA WEB
+           9. PREVIEW REAL DE LA WEB
         ===================================================== */
 
         .web-box {
@@ -679,9 +650,16 @@
             }
 
             .presentation-gallery {
+                min-height: 520px;
                 padding-right: 0.3rem;
                 padding-left: 0.3rem;
                 gap: 0.8rem;
+            }
+
+            .pdf-preview {
+                height: 70vh;
+                min-height: 520px;
+                border-radius: 8px;
             }
 
             .pdf-slide {
@@ -721,14 +699,6 @@
         }
 
         @media (max-width: 480px) {
-            .section-heading h3 {
-                font-size: 1.05rem;
-            }
-
-            .section-heading p {
-                font-size: 0.64rem;
-            }
-
             .logo-card {
                 min-height: 235px;
             }
@@ -762,21 +732,33 @@
     ====================================================== -->
 
     <nav>
-        <a href="../index.html#skipIntro" aria-label="Volver a la página principal">
+
+        <a
+            href="../index.html#skipIntro"
+            aria-label="Volver a la página principal">
+
             <img
                 src="/images/BLANCA_NAME.png"
                 class="nav-logo"
                 alt="Blanca Palazuelo">
+
         </a>
 
-        <span class="nav-separator" aria-hidden="true"></span>
+        <span
+            class="nav-separator"
+            aria-hidden="true">
+        </span>
 
-        <div class="nav-links" id="navLinks">
+        <div
+            class="nav-links"
+            id="navLinks">
+
             <a href="../projects.html">Projects</a>
             <a href="../skills.html">Skills</a>
             <a href="../about.html">About</a>
             <a href="../contact.html">Contact</a>
             <a href="../inquiry.html">Inquiry</a>
+
         </div>
 
         <button
@@ -790,7 +772,9 @@
             <span></span>
             <span></span>
             <span></span>
+
         </button>
+
     </nav>
 
     <!-- =====================================================
@@ -802,10 +786,18 @@
         <!-- CABECERA -->
 
         <header class="project-header">
-            <h1>TERRA HOMES</h1>
-            <h2>REAL ESTATE &amp; PROPERTY DEVELOPMENT</h2>
 
-            <div class="filter-bar" role="group" aria-label="Filtrar proyecto">
+            <h1>TERRA HOMES</h1>
+
+            <h2>
+                REAL ESTATE &amp; PROPERTY DEVELOPMENT
+            </h2>
+
+            <div
+                class="filter-bar"
+                role="group"
+                aria-label="Filtrar proyecto">
+
                 <button
                     class="filter-btn active"
                     type="button"
@@ -840,7 +832,9 @@
                     data-filter="dev">
                     Web Development
                 </button>
+
             </div>
+
         </header>
 
         <div class="project-content">
@@ -852,13 +846,12 @@
             <section
                 class="filter-item"
                 data-categories="logo"
-                aria-labelledby="logo-title">
-
-              
+                aria-label="Logo design">
 
                 <div class="logo-gallery">
 
                     <figure class="logo-card logo-card--dark">
+
                         <img
                             src="TERRAHOMES/LOGO_BLANCO.png"
                             alt="Logotipo blanco de Terra Homes"
@@ -867,9 +860,11 @@
                         <figcaption class="logo-label">
                             Light version
                         </figcaption>
+
                     </figure>
 
                     <figure class="logo-card logo-card--light">
+
                         <img
                             src="TERRAHOMES/LOGO_MARRON.png"
                             alt="Logotipo marrón de Terra Homes"
@@ -878,9 +873,11 @@
                         <figcaption class="logo-label">
                             Dark version
                         </figcaption>
+
                     </figure>
 
                 </div>
+
             </section>
 
             <!-- =================================================
@@ -890,9 +887,7 @@
             <section
                 class="filter-item"
                 data-categories="branding"
-                aria-labelledby="branding-title">
-
-             
+                aria-label="Branding presentation">
 
                 <div class="presentation-shell">
 
@@ -901,13 +896,24 @@
                         id="presentationGallery"
                         aria-label="Presentación de branding de Terra Homes">
 
-                        <div class="presentation-message" id="pdfMessage">
-                            Loading presentation…
-                        </div>
+                        <!--
+                            El PDF se muestra como preview inicialmente.
+
+                            Si PDF.js consigue procesarlo, este iframe
+                            se elimina y aparecen todas las diapositivas.
+                        -->
+
+                        <iframe
+                            id="pdfFallback"
+                            class="pdf-preview"
+                            src="TERRAHOMES/REBRANDING_2026.pdf#page=1&view=FitH"
+                            title="Terra Homes branding presentation">
+                        </iframe>
 
                     </div>
 
                     <div class="presentation-actions">
+
                         <a
                             href="TERRAHOMES/REBRANDING_2026.pdf"
                             target="_blank"
@@ -916,13 +922,20 @@
 
                             Open full presentation
 
-                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <svg
+                                viewBox="0 0 24 24"
+                                aria-hidden="true">
+
                                 <path d="M5 12h14M13 5l6 7-6 7"></path>
+
                             </svg>
+
                         </a>
+
                     </div>
 
                 </div>
+
             </section>
 
             <!-- =================================================
@@ -932,10 +945,11 @@
             <section
                 class="filter-item"
                 data-categories="web dev"
-                aria-labelledby="website-title">
+                aria-label="Website design and development">
 
-
-                <div class="web-box" aria-label="Vista previa de Terra Homes">
+                <div
+                    class="web-box"
+                    aria-label="Vista previa de Terra Homes">
 
                     <a
                         href="https://www.terrahomes.es/"
@@ -945,23 +959,33 @@
 
                         View full site
 
-                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <svg
+                            viewBox="0 0 24 24"
+                            aria-hidden="true">
+
                             <path d="M5 12h14M13 5l6 7-6 7"></path>
+
                         </svg>
+
                     </a>
 
                     <div class="scale-wrapper">
+
                         <iframe
                             src="https://www.terrahomes.es/"
                             loading="lazy"
-                            title="Terra Homes website preview">
+                            title="Terra Homes website preview"
+                            allow="fullscreen">
                         </iframe>
+
                     </div>
 
                 </div>
+
             </section>
 
         </div>
+
     </main>
 
     <!-- =====================================================
@@ -969,52 +993,68 @@
     ====================================================== -->
 
     <footer class="site-footer">
+
         <img
             src="/images/CERRADURA_ICONO.png"
             alt="Lock icon"
             class="footer-lock">
+
     </footer>
 
     <!-- =====================================================
-         SCRIPTS
+         MENÚ Y FILTROS
     ====================================================== -->
 
     <script>
-        /* =====================================================
-           MENÚ MÓVIL
-        ===================================================== */
-
         const hamburger = document.getElementById("hamburger");
         const navLinks = document.getElementById("navLinks");
 
-        hamburger.addEventListener("click", () => {
-            const isOpen = navLinks.classList.toggle("active");
+        if (hamburger && navLinks) {
+            hamburger.addEventListener("click", () => {
+                const isOpen = navLinks.classList.toggle("active");
 
-            hamburger.setAttribute("aria-expanded", String(isOpen));
-            hamburger.setAttribute(
-                "aria-label",
-                isOpen ? "Cerrar menú" : "Abrir menú"
-            );
-        });
+                hamburger.setAttribute(
+                    "aria-expanded",
+                    String(isOpen)
+                );
 
-        navLinks.querySelectorAll("a").forEach((link) => {
-            link.addEventListener("click", () => {
-                navLinks.classList.remove("active");
-                hamburger.setAttribute("aria-expanded", "false");
-                hamburger.setAttribute("aria-label", "Abrir menú");
+                hamburger.setAttribute(
+                    "aria-label",
+                    isOpen ? "Cerrar menú" : "Abrir menú"
+                );
             });
-        });
+
+            navLinks.querySelectorAll("a").forEach((link) => {
+                link.addEventListener("click", () => {
+                    navLinks.classList.remove("active");
+
+                    hamburger.setAttribute(
+                        "aria-expanded",
+                        "false"
+                    );
+
+                    hamburger.setAttribute(
+                        "aria-label",
+                        "Abrir menú"
+                    );
+                });
+            });
+        }
 
         /* =====================================================
-           FILTROS FUNCIONALES
+           FILTROS
         ===================================================== */
 
-        const filterButtons = document.querySelectorAll(".filter-btn");
-        const filterItems = document.querySelectorAll(".filter-item");
+        const filterButtons =
+            document.querySelectorAll(".filter-btn");
+
+        const filterItems =
+            document.querySelectorAll(".filter-item");
 
         filterButtons.forEach((button) => {
             button.addEventListener("click", () => {
-                const selectedFilter = button.dataset.filter;
+                const selectedFilter =
+                    button.dataset.filter;
 
                 filterButtons.forEach((currentButton) => {
                     currentButton.classList.remove("active");
@@ -1023,22 +1063,26 @@
                 button.classList.add("active");
 
                 filterItems.forEach((item) => {
-                    const categories = item.dataset.categories
-                        .split(" ")
-                        .filter(Boolean);
+                    const categories =
+                        item.dataset.categories
+                            .split(" ")
+                            .filter(Boolean);
 
                     const shouldShow =
                         selectedFilter === "all" ||
                         categories.includes(selectedFilter);
 
-                    item.classList.toggle("is-hidden", !shouldShow);
+                    item.classList.toggle(
+                        "is-hidden",
+                        !shouldShow
+                    );
                 });
             });
         });
     </script>
 
     <!-- =====================================================
-         PDF.JS: RENDERIZA TODAS LAS DIAPOSITIVAS
+         PDF.JS
     ====================================================== -->
 
     <script type="module">
@@ -1048,67 +1092,116 @@
         pdfjsLib.GlobalWorkerOptions.workerSrc =
             "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.worker.min.mjs";
 
-        const pdfPath = "./REBRANDING_2026.pdf";
-        const gallery = document.getElementById("presentationGallery");
-        const message = document.getElementById("pdfMessage");
+        const pdfPath =
+            "TERRAHOMES/REBRANDING_2026.pdf";
+
+        const gallery =
+            document.getElementById("presentationGallery");
 
         async function renderPresentation() {
+            if (!gallery) {
+                return;
+            }
+
             try {
-                const pdf = await pdfjsLib.getDocument(pdfPath).promise;
+                const pdf =
+                    await pdfjsLib.getDocument(pdfPath).promise;
 
-                if (message) {
-                    message.remove();
-                }
+                for (
+                    let pageNumber = 1;
+                    pageNumber <= pdf.numPages;
+                    pageNumber++
+                ) {
+                    const page =
+                        await pdf.getPage(pageNumber);
 
-                for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber++) {
-                    const page = await pdf.getPage(pageNumber);
+                    const baseViewport =
+                        page.getViewport({
+                            scale: 1
+                        });
 
-                    /*
-                     * Se renderiza a mayor resolución para que las páginas
-                     * se vean nítidas, aunque visualmente se adapten con CSS.
-                     */
-                    const baseViewport = page.getViewport({ scale: 1 });
-                    const targetWidth = 1500;
-                    const renderScale = targetWidth / baseViewport.width;
-                    const viewport = page.getViewport({ scale: renderScale });
+                    const targetWidth = 1300;
 
-                    const slide = document.createElement("figure");
+                    const renderScale =
+                        targetWidth / baseViewport.width;
+
+                    const viewport =
+                        page.getViewport({
+                            scale: renderScale
+                        });
+
+                    const slide =
+                        document.createElement("figure");
+
                     slide.className = "pdf-slide";
+
                     slide.setAttribute(
                         "aria-label",
                         `Diapositiva ${pageNumber} de ${pdf.numPages}`
                     );
 
-                    const canvas = document.createElement("canvas");
-                    const context = canvas.getContext("2d", {
-                        alpha: false
-                    });
+                    const canvas =
+                        document.createElement("canvas");
 
-                    canvas.width = Math.ceil(viewport.width);
-                    canvas.height = Math.ceil(viewport.height);
+                    const context =
+                        canvas.getContext("2d", {
+                            alpha: false
+                        });
 
-                    const number = document.createElement("figcaption");
+                    if (!context) {
+                        throw new Error(
+                            "No se pudo crear el canvas."
+                        );
+                    }
+
+                    canvas.width =
+                        Math.ceil(viewport.width);
+
+                    canvas.height =
+                        Math.ceil(viewport.height);
+
+                    const number =
+                        document.createElement("figcaption");
+
                     number.className = "slide-number";
-                    number.textContent = `${pageNumber} / ${pdf.numPages}`;
+
+                    number.textContent =
+                        `${pageNumber} / ${pdf.numPages}`;
 
                     slide.appendChild(canvas);
                     slide.appendChild(number);
-                    gallery.appendChild(slide);
 
                     await page.render({
                         canvasContext: context,
-                        viewport
+                        viewport: viewport
                     }).promise;
+
+                    /*
+                     * Cuando la primera diapositiva ya está preparada,
+                     * quitamos el preview inicial del PDF.
+                     */
+
+                    if (pageNumber === 1) {
+                        const fallback =
+                            document.getElementById("pdfFallback");
+
+                        if (fallback) {
+                            fallback.remove();
+                        }
+                    }
+
+                    gallery.appendChild(slide);
                 }
             } catch (error) {
-                console.error("No se pudo cargar la presentación:", error);
+                /*
+                 * Si PDF.js no puede renderizar las diapositivas,
+                 * el iframe del PDF permanece visible.
+                 */
 
-                gallery.innerHTML = `
-                    <div class="presentation-message">
-                        The presentation could not be displayed.
-                        Please open the full PDF below.
-                    </div>
-                `;
+                console.error(
+                    "No se pudo cargar la galería completa:",
+                    error
+                );
             }
         }
 
